@@ -1,0 +1,16 @@
+[package]
+name = "day-06"
+version = { workspace = true }
+authors = { workspace = true }
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+advent-utils = { workspace = true }
+color-eyre = { workspace = true }
+
+fnv = { workspace = true }
+
+[dev-dependencies]
+indoc = { workspace = true }

@@ -1,0 +1,22 @@
+[workspace]
+members = [
+    'day-01',
+    'day-02',
+    'day-03',
+    'day-04',
+    'day-05',
+    'day-06',
+
+    'integration-test',
+    'run-all',
+]
+
+[workspace.package]
+version = "0.0.0"
+authors = ["Vlad Stepanov <8uk.8ak@gmail.com>"]
+
+[workspace.dependencies]
+advent-utils = { git = "https://github.com/utter-step/advent-utils" }
+color-eyre = "0.6"
+indoc = "1"
+fnv = "1"

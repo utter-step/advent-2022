@@ -1,0 +1,12 @@
+day 01: elf with most reserves has total of 70374 calories
+day 01: top 3 elves have total of 204610 calories
+day 02: you will end up with total score of 13526
+day 02: actually, your score will be 14204
+day 03: priorities sum for the mistaken types: 7716
+day 03: priorities sum for the group names: 2973
+day 04: 441 ranges fully include one another
+day 04: 861 ranges intersect
+day 05: top crates are: `CFFHVVHNC`
+day 05: top crates are: `FSZWBPTBG`
+day 06: packet starts at 1042
+day 06: packet starts at 2980
