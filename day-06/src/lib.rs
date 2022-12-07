@@ -6,25 +6,30 @@ use fnv::FnvHashSet;
 
 #[derive(Debug)]
 pub struct Solution {
-    stream: String
+    stream: String,
 }
 
 impl FromStr for Solution {
     type Err = Box<dyn Error>;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        Ok(Self { stream: s.to_owned() })
+        Ok(Self {
+            stream: s.to_owned(),
+        })
     }
 }
 
 fn find_packet_start(stream: &str, packet_size: usize) -> Option<usize> {
     let bytes: Vec<_> = stream.bytes().collect();
 
-    bytes.windows(packet_size).enumerate().find_map(|(i, window)| {
-        let set = FnvHashSet::from_iter(window);
+    bytes
+        .windows(packet_size)
+        .enumerate()
+        .find_map(|(i, window)| {
+            let set = FnvHashSet::from_iter(window);
 
-        (set.len() == packet_size).then_some(i + packet_size)
-    })
+            (set.len() == packet_size).then_some(i + packet_size)
+        })
 }
 
 impl Solver for Solution {
@@ -38,7 +43,8 @@ impl Solver for Solution {
             Part::Two => 14,
         };
 
-        let start = find_packet_start(&self.stream, packet_size).expect("couldn't find packet start");
+        let start =
+            find_packet_start(&self.stream, packet_size).expect("couldn't find packet start");
 
         format!("packet starts at {start}")
     }
@@ -50,6 +56,9 @@ mod tests {
 
     #[test]
     fn test_examples() {
-        assert_eq!(find_packet_start("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 4), Some(7));
+        assert_eq!(
+            find_packet_start("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 4),
+            Some(7)
+        );
     }
 }
