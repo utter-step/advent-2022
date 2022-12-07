@@ -20,7 +20,7 @@ fn parse_command(
     fs_entries: &mut Map<PathBuf, FsEntry>,
 ) -> Result<(), Report> {
     let (cmd_name, rest) = cmd_log
-        .split_once([' ', '\n'])
+        .split_once(' ')
         .ok_or_else(|| eyre!("invalid cmd format: {cmd_log}"))?;
 
     match cmd_name {
