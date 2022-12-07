@@ -1,3 +1,3 @@
-# advent-2021
+# advent-2022
 
-Rusty Advent of Code solutions — 2021
+Rusty Advent of Code solutions — 2022
