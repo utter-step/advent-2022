@@ -1,5 +1,5 @@
 [package]
-name = "day-02"
+name = "day-10"
 version = { workspace = true }
 authors = { workspace = true }
 edition = "2021"
@@ -8,3 +8,7 @@ edition = "2021"
 
 [dependencies]
 advent-utils = { workspace = true }
+color-eyre = { workspace = true }
+
+[dev-dependencies]
+indoc = { workspace = true }

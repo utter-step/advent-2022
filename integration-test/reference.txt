@@ -14,3 +14,13 @@ day 07: total file sizes sum is 1297159
 day 07: min dir to delete has size 3866390
 day 08: 1870 trees are visible from the outside
 day 08: max scenic score is: 517440
+day 09: tail visited 6057 unique positions
+day 10: total power is 14560
+day 10: CRT reads:
+####.#..#.###..#..#.####.###..#..#.####.
+#....#.#..#..#.#..#.#....#..#.#..#....#.
+###..##...#..#.####.###..#..#.#..#...#..
+#....#.#..###..#..#.#....###..#..#..#...
+#....#.#..#.#..#..#.#....#....#..#.#....
+####.#..#.#..#.#..#.####.#.....##..####.
+

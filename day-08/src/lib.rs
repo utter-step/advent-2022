@@ -54,12 +54,13 @@ fn compute_score_naive(map: &[Vec<u8>], x: usize, y: usize) -> u32 {
 
     let current = map[y][x];
 
-    let nearest_top = (
-        y - (0..y).rev().find(|&y| map[y][x] >= current).unwrap_or(0)
-    ) as u32;
+    let nearest_top = (y - (0..y).rev().find(|&y| map[y][x] >= current).unwrap_or(0)) as u32;
     let nearest_bottom = stop_if_zero!(
         nearest_top,
-        (y + 1..len).find(|&y| map[y][x] >= current).unwrap_or(len - 1) - y
+        (y + 1..len)
+            .find(|&y| map[y][x] >= current)
+            .unwrap_or(len - 1)
+            - y
     ) as u32;
     let nearest_left = stop_if_zero!(
         nearest_bottom,
@@ -67,7 +68,10 @@ fn compute_score_naive(map: &[Vec<u8>], x: usize, y: usize) -> u32 {
     ) as u32;
     let nearest_right = stop_if_zero!(
         nearest_left,
-        (x + 1..len).find(|&x| map[y][x] >= current).unwrap_or(len - 1) - x
+        (x + 1..len)
+            .find(|&x| map[y][x] >= current)
+            .unwrap_or(len - 1)
+            - x
     ) as u32;
 
     nearest_top * nearest_bottom * nearest_left * nearest_right
@@ -102,10 +106,7 @@ impl Solver for Solution {
                 "{} trees are visible from the outside",
                 count_visible(&self.map)
             ),
-            Part::Two => format!(
-                "max scenic score is: {}",
-                max_scenic_score(&self.map)
-            ),
+            Part::Two => format!("max scenic score is: {}", max_scenic_score(&self.map)),
         }
     }
 

@@ -8,4 +8,3 @@ edition = "2021"
 
 [dependencies]
 advent-utils = { workspace = true }
-color-eyre = { workspace = true }
