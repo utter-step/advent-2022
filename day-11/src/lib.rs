@@ -30,7 +30,7 @@ impl Solver for Solution {
             Part::Two => 1,
         };
         let modulo =
-            lcm(monkeys.iter().map(|m| m.divisible_by)).expect("no monkeys in the game :(") as u128;
+            lcm(monkeys.iter().map(|m| m.divisible_by)).expect("no monkeys in the game :(");
 
         for _ in 0..n_rounds {
             for i in 0..monkeys.len() {
@@ -64,7 +64,7 @@ struct Monkey {
 }
 
 impl Monkey {
-    fn make_move(&mut self, divide_by: u128, modulo: u128) -> Vec<(usize, u64)> {
+    fn make_move(&mut self, divide_by: u64, modulo: u64) -> Vec<(usize, u64)> {
         self.items
             .drain(..)
             .map(|item| {
@@ -146,16 +146,16 @@ struct Operation {
 }
 
 impl Operation {
-    fn apply(&self, old: u64) -> u128 {
+    fn apply(&self, old: u64) -> u64 {
         let left = match self.left {
             Operand::Item => old,
             Operand::Const(n) => n,
-        } as u128;
+        } as u64;
 
         let right = match self.right {
             Operand::Item => old,
             Operand::Const(n) => n,
-        } as u128;
+        } as u64;
 
         match self.operator {
             Operator::Add => left + right,

@@ -3,7 +3,7 @@ use std::{
     error::Error,
     fmt,
     iter::{empty, repeat},
-    str::{Bytes, FromStr},
+    str::FromStr,
 };
 
 use advent_utils::{Part, Solver};
@@ -140,7 +140,7 @@ impl Rope {
     }
 
     pub fn make_move(&mut self, move_: Move) -> impl Iterator<Item = (i64, i64)> {
-        println!("Making move {move_:?}, self state: \n{self}");
+        // println!("Making move {move_:?}, self state: \n{self}");
 
         match move_ {
             Move::Left(nsteps) => self.segments[0].x -= nsteps,
