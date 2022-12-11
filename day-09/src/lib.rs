@@ -1,8 +1,9 @@
 use std::{
     collections::HashSet,
     error::Error,
+    fmt,
     iter::{empty, repeat},
-    str::FromStr,
+    str::{Bytes, FromStr},
 };
 
 use advent_utils::{Part, Solver};
@@ -51,7 +52,7 @@ impl Solver for Solution {
 
                 format!(
                     "tail of 10-segmented rope visited {} unique positions",
-                    dbg!(visited).len()
+                    visited.len()
                 )
             }
         }
@@ -99,6 +100,32 @@ struct Rope {
     segments: Vec<Point>,
 }
 
+impl fmt::Display for Rope {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let min_x = self.segments.iter().map(|p| p.x).min().unwrap_or_default();
+        let max_x = self.segments.iter().map(|p| p.x).max().unwrap_or_default();
+        let min_y = self.segments.iter().map(|p| p.y).min().unwrap_or_default();
+        let max_y = self.segments.iter().map(|p| p.y).max().unwrap_or_default();
+
+        let mut map: Vec<_> = (min_y..=max_y)
+            .map(|_| vec![b'.'; (max_x - min_x + 1) as usize])
+            .collect();
+
+        for (i, segment) in self.segments.iter().enumerate().rev() {
+            map[(segment.y - min_y) as usize][(segment.x - min_x) as usize] =
+                if i == 0 { b'H' } else { b'0' + i as u8 }
+        }
+
+        let result = map
+            .into_iter()
+            .reduce(|line_a, line_b| [line_a, vec![b'\n'], line_b].concat())
+            .and_then(|map| String::from_utf8(map).ok())
+            .unwrap_or_default();
+
+        write!(f, "{result}")
+    }
+}
+
 #[derive(Debug, Default, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord)]
 struct Point {
     x: i64,
@@ -113,6 +140,8 @@ impl Rope {
     }
 
     pub fn make_move(&mut self, move_: Move) -> impl Iterator<Item = (i64, i64)> {
+        println!("Making move {move_:?}, self state: \n{self}");
+
         match move_ {
             Move::Left(nsteps) => self.segments[0].x -= nsteps,
             Move::Right(nsteps) => self.segments[0].x += nsteps,
