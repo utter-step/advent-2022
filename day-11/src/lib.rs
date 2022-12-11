@@ -217,7 +217,7 @@ impl FromStr for Operator {
 }
 
 fn lcm(nums: impl Iterator<Item = u64>) -> Option<u64> {
-    use gcd::binary_u64;
+    use gcd::euclid_u64 as gcd;
 
-    nums.reduce(|a, b| a * b / binary_u64(a, b))
+    nums.reduce(|a, b| a * b / gcd(a, b))
 }
